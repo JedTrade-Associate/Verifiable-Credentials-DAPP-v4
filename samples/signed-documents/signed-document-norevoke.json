@@ -1,0 +1,43 @@
+{
+  "version": "https://schema.openattestation.com/2.0/schema.json",
+  "data": {
+    "$template": {
+      "name": "05768019-1372-4825-8389-3ed53b2c1893:string:main",
+      "type": "13ae9c95-49bc-4162-9f25-9ea0373c6745:string:EMBEDDED_RENDERER",
+      "url": "31acc24e-d9da-4671-9a30-05a50df4a787:string:https://tutorial-renderer.openattestation.com"
+    },
+    "recipient": {
+      "name": "910ed672-1837-4ee4-a994-b2a824a20b03:string:John Doe"
+    },
+    "uselessField": "1c3767cb-4016-4854-bf3a-3f65df9d18e1:string:uselessString",
+    "issuers": [
+      {
+        "id": "839e8c89-1242-44af-b7f6-5e050e78f07e:string:did:ethr:0xf76b50CBbBb9D05bb7b65AD37F9f2dA8786901B8",
+        "name": "4fce2b69-5dda-40cb-8144-cf05c1615d02:string:Demo Issuer",
+        "revocation": {
+          "type": "0e4f2506-8f5f-4306-ad01-c688ffb810d9:string:NONE"
+        },
+        "identityProof": {
+          "type": "b84b4da5-9f64-4757-9d12-474d726a9c4b:string:DNS-DID",
+          "location": "abb0a075-a937-4d1f-9bae-4afcebbe44bf:string:great-silver-frog.sandbox.openattestation.com",
+          "key": "2e2bca60-08f7-4054-b730-128209661205:string:did:ethr:0xf76b50CBbBb9D05bb7b65AD37F9f2dA8786901B8#controller"
+        }
+      }
+    ]
+  },
+  "signature": {
+    "type": "SHA3MerkleProof",
+    "targetHash": "b5dbb8421cc4a12d20a612a19ac86a152cb1427a075e8571dc2b43d2b0dae454",
+    "proof": [],
+    "merkleRoot": "b5dbb8421cc4a12d20a612a19ac86a152cb1427a075e8571dc2b43d2b0dae454"
+  },
+  "proof": [
+    {
+      "type": "OpenAttestationSignature2018",
+      "created": "2022-09-27T07:47:29.760Z",
+      "proofPurpose": "assertionMethod",
+      "verificationMethod": "did:ethr:0xf76b50CBbBb9D05bb7b65AD37F9f2dA8786901B8#controller",
+      "signature": "0xb7f30d27a0e4aca82cae69b3f6c0904fd40fbd9bc8bd432e24c2c8fb524c6e4e4a9135f31afa8f453ec83f7a33527370186638aed417d88f0de2a1d803767b171c"
+    }
+  ]
+}

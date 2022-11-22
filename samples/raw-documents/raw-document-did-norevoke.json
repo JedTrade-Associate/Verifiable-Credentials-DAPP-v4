@@ -1,0 +1,25 @@
+{
+  "$template": {
+    "name": "main",
+    "type": "EMBEDDED_RENDERER",
+    "url": "https://tutorial-renderer.openattestation.com"
+  },
+  "recipient": {
+    "name": "John Doe"
+  },
+  "uselessField": "uselessString",
+  "issuers": [
+    {
+      "id": "did:ethr:0xf76b50CBbBb9D05bb7b65AD37F9f2dA8786901B8",
+      "name": "Demo Issuer",
+      "revocation": {
+        "type": "NONE"
+      },
+      "identityProof": {
+        "type": "DNS-DID",
+        "location": "great-silver-frog.sandbox.openattestation.com",
+        "key": "did:ethr:0xf76b50CBbBb9D05bb7b65AD37F9f2dA8786901B8#controller"
+      }
+    }
+  ]
+}

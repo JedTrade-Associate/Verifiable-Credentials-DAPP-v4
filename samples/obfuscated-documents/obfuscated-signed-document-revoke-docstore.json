@@ -1,0 +1,48 @@
+{
+  "version": "https://schema.openattestation.com/2.0/schema.json",
+  "data": {
+    "$template": {
+      "name": "403ff74c-1527-44c9-a1d8-ab7a6e48a1d6:string:main",
+      "type": "199f1d07-72de-4d7d-b8c2-8b1bdb53bd64:string:EMBEDDED_RENDERER",
+      "url": "5aa2b61f-41bf-434b-a199-50b7af57f1a9:string:https://tutorial-renderer.openattestation.com"
+    },
+    "recipient": {
+      "name": "c5bb2b82-96be-455b-be6c-3d362a5ed106:string:John Doe"
+    },
+    "issuers": [
+      {
+        "id": "a822fe81-e549-409d-bc2d-cead2eeb8366:string:did:ethr:0xf76b50CBbBb9D05bb7b65AD37F9f2dA8786901B8",
+        "name": "a222d5de-99b0-40c2-8044-e6c1d5d97607:string:Demo Issuer",
+        "revocation": {
+          "type": "62b538d3-75d9-4c11-b335-af63360ee1d4:string:REVOCATION_STORE",
+          "location": "e6bd58d8-7e52-4d67-9937-ee5d85aa2c77:string:0xb0955B869b5f484d910a868A08C0D72fd0b8CFC8"
+        },
+        "identityProof": {
+          "type": "0d6b7616-58ff-4fa1-8a84-dc094accd8c8:string:DNS-DID",
+          "location": "bd59f47e-3832-4e20-ba59-302d247f3619:string:great-silver-frog.sandbox.openattestation.com",
+          "key": "e089f944-5faa-453d-9ab9-34f937b07851:string:did:ethr:0xf76b50CBbBb9D05bb7b65AD37F9f2dA8786901B8#controller"
+        }
+      }
+    ]
+  },
+  "signature": {
+    "type": "SHA3MerkleProof",
+    "targetHash": "2374c6810881a2325e5eae4f60c9e5b748fe5b35989a7702f9d9fd5afac68931",
+    "proof": [],
+    "merkleRoot": "2374c6810881a2325e5eae4f60c9e5b748fe5b35989a7702f9d9fd5afac68931"
+  },
+  "proof": [
+    {
+      "type": "OpenAttestationSignature2018",
+      "created": "2022-09-27T08:01:05.023Z",
+      "proofPurpose": "assertionMethod",
+      "verificationMethod": "did:ethr:0xf76b50CBbBb9D05bb7b65AD37F9f2dA8786901B8#controller",
+      "signature": "0x666abf0e874cc3d3c6872729cdd40ba24dc00b913930c6964b17a611b5e09e440510aa46903673701dc9054b947052c00b79230e243ffd155a511083e1e789591b"
+    }
+  ],
+  "privacy": {
+    "obfuscatedData": [
+      "7946f23b4edfc0ade60b770d5cc70fdfb9c658158f90bf5eaf20ce36d3897767"
+    ]
+  }
+}

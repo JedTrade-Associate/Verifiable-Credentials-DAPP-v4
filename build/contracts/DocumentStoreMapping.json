@@ -1,0 +1,747 @@
+{
+  "contractName": "DocumentStoreMapping",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "name": "mappings",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "signer",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "document",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "docStore",
+          "type": "address"
+        }
+      ],
+      "name": "setMapping",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"mappings\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"signer\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"document\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"docStore\",\"type\":\"address\"}],\"name\":\"setMapping\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/E/Projects/Jedtrade/jcert/jcerts-truffle-docstore/contracts/DocumentStoreMapping.sol\":\"DocumentStoreMapping\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/E/Projects/Jedtrade/jcert/jcerts-truffle-docstore/contracts/DocumentStoreMapping.sol\":{\"keccak256\":\"0xefd596dcd84b83911f44eda7f88315d871b2f2c9ca96073df7bfe54be85b2537\",\"urls\":[\"bzz-raw://5860c309998137bf2599a65459fc3ee0945946505d94bc2707d32ab2d97428f8\",\"dweb:/ipfs/QmVhMP6DkbaEq1Zu33E8u8DoXo9Wdh5hfPoYdRWUA411v7\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50610241806100206000396000f3fe608060405234801561001057600080fd5b50600436106100365760003560e01c80632444799d1461003b57806350c21cf0146100a9575b600080fd5b6100a76004803603606081101561005157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610137565b005b6100f5600480360360408110156100bf57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803590602001909291905050506101ca565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b806000808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600084815260200190815260200160002060006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550505050565b60006020528160005260406000206020528060005260406000206000915091509054906101000a900473ffffffffffffffffffffffffffffffffffffffff168156fea265627a7a7231582012809f63b3e96966ad971c4030da2d21adcacb23d2c9df5f3546df6020651df264736f6c63430005100032",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100365760003560e01c80632444799d1461003b57806350c21cf0146100a9575b600080fd5b6100a76004803603606081101561005157600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff16906020019092919080359060200190929190803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610137565b005b6100f5600480360360408110156100bf57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803590602001909291905050506101ca565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b806000808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600084815260200190815260200160002060006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550505050565b60006020528160005260406000206020528060005260406000206000915091509054906101000a900473ffffffffffffffffffffffffffffffffffffffff168156fea265627a7a7231582012809f63b3e96966ad971c4030da2d21adcacb23d2c9df5f3546df6020651df264736f6c63430005100032",
+  "sourceMap": "28:281:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;28:281:1;;;;;;;",
+  "deployedSourceMap": "28:281:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;28:281:1;;;;;;;;;;;;;;;;;;;;;;;;151:155;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;151:155:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;75:63;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;75:63:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;151:155;280:8;251;:16;260:6;251:16;;;;;;;;;;;;;;;:26;268:8;251:26;;;;;;;;;;;;:37;;;;;;;;;;;;;;;;;;151:155;;;:::o;75:63::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "pragma solidity ^0.5.12;\r\n\r\ncontract DocumentStoreMapping {\r\n        \r\n    mapping(address => mapping(bytes32 => address)) public mappings;\r\n    \r\n    function setMapping(address signer, bytes32 document, address docStore) public {\r\n        \r\n        mappings[signer][document] = docStore;\r\n        \r\n    }\r\n}",
+  "sourcePath": "E:\\Projects\\Jedtrade\\jcert\\jcerts-truffle-docstore\\contracts\\DocumentStoreMapping.sol",
+  "ast": {
+    "absolutePath": "/E/Projects/Jedtrade/jcert/jcerts-truffle-docstore/contracts/DocumentStoreMapping.sol",
+    "exportedSymbols": {
+      "DocumentStoreMapping": [
+        399
+      ]
+    },
+    "id": 400,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 374,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".12"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:1"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 399,
+        "linearizedBaseContracts": [
+          399
+        ],
+        "name": "DocumentStoreMapping",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 380,
+            "name": "mappings",
+            "nodeType": "VariableDeclaration",
+            "scope": 399,
+            "src": "75:63:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_mapping$_t_bytes32_$_t_address_$_$",
+              "typeString": "mapping(address => mapping(bytes32 => address))"
+            },
+            "typeName": {
+              "id": 379,
+              "keyType": {
+                "id": 375,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "83:7:1",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "75:47:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_mapping$_t_bytes32_$_t_address_$_$",
+                "typeString": "mapping(address => mapping(bytes32 => address))"
+              },
+              "valueType": {
+                "id": 378,
+                "keyType": {
+                  "id": 376,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "102:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "nodeType": "Mapping",
+                "src": "94:27:1",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_bytes32_$_t_address_$",
+                  "typeString": "mapping(bytes32 => address)"
+                },
+                "valueType": {
+                  "id": 377,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "113:7:1",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                }
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 397,
+              "nodeType": "Block",
+              "src": "230:76:1",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 395,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "id": 389,
+                          "name": "mappings",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 380,
+                          "src": "251:8:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_address_$_t_mapping$_t_bytes32_$_t_address_$_$",
+                            "typeString": "mapping(address => mapping(bytes32 => address))"
+                          }
+                        },
+                        "id": 392,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 390,
+                          "name": "signer",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 382,
+                          "src": "260:6:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "251:16:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_bytes32_$_t_address_$",
+                          "typeString": "mapping(bytes32 => address)"
+                        }
+                      },
+                      "id": 393,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "id": 391,
+                        "name": "document",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 384,
+                        "src": "268:8:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "251:26:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "id": 394,
+                      "name": "docStore",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 386,
+                      "src": "280:8:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "251:37:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 396,
+                  "nodeType": "ExpressionStatement",
+                  "src": "251:37:1"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 398,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setMapping",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 387,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 382,
+                  "name": "signer",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 398,
+                  "src": "171:14:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 381,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "171:7:1",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 384,
+                  "name": "document",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 398,
+                  "src": "187:16:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 383,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "187:7:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 386,
+                  "name": "docStore",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 398,
+                  "src": "205:16:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 385,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "205:7:1",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "170:52:1"
+            },
+            "returnParameters": {
+              "id": 388,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "230:0:1"
+            },
+            "scope": 399,
+            "src": "151:155:1",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 400,
+        "src": "28:281:1"
+      }
+    ],
+    "src": "0:309:1"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "/E/Projects/Jedtrade/jcert/jcerts-truffle-docstore/contracts/DocumentStoreMapping.sol",
+      "exportedSymbols": {
+        "DocumentStoreMapping": [
+          399
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.5",
+            ".12"
+          ]
+        },
+        "id": 374,
+        "name": "PragmaDirective",
+        "src": "0:24:1"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            399
+          ],
+          "name": "DocumentStoreMapping",
+          "scope": 400
+        },
+        "children": [
+          {
+            "attributes": {
+              "constant": false,
+              "name": "mappings",
+              "scope": 399,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "mapping(address => mapping(bytes32 => address))",
+              "value": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "type": "mapping(address => mapping(bytes32 => address))"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "address",
+                      "type": "address"
+                    },
+                    "id": 375,
+                    "name": "ElementaryTypeName",
+                    "src": "83:7:1"
+                  },
+                  {
+                    "attributes": {
+                      "type": "mapping(bytes32 => address)"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 376,
+                        "name": "ElementaryTypeName",
+                        "src": "102:7:1"
+                      },
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 377,
+                        "name": "ElementaryTypeName",
+                        "src": "113:7:1"
+                      }
+                    ],
+                    "id": 378,
+                    "name": "Mapping",
+                    "src": "94:27:1"
+                  }
+                ],
+                "id": 379,
+                "name": "Mapping",
+                "src": "75:47:1"
+              }
+            ],
+            "id": 380,
+            "name": "VariableDeclaration",
+            "src": "75:63:1"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "setMapping",
+              "scope": 399,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "signer",
+                      "scope": 398,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 381,
+                        "name": "ElementaryTypeName",
+                        "src": "171:7:1"
+                      }
+                    ],
+                    "id": 382,
+                    "name": "VariableDeclaration",
+                    "src": "171:14:1"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "document",
+                      "scope": 398,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bytes32",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes32",
+                          "type": "bytes32"
+                        },
+                        "id": 383,
+                        "name": "ElementaryTypeName",
+                        "src": "187:7:1"
+                      }
+                    ],
+                    "id": 384,
+                    "name": "VariableDeclaration",
+                    "src": "187:16:1"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "docStore",
+                      "scope": 398,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 385,
+                        "name": "ElementaryTypeName",
+                        "src": "205:7:1"
+                      }
+                    ],
+                    "id": 386,
+                    "name": "VariableDeclaration",
+                    "src": "205:16:1"
+                  }
+                ],
+                "id": 387,
+                "name": "ParameterList",
+                "src": "170:52:1"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 388,
+                "name": "ParameterList",
+                "src": "230:0:1"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "address"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "type": "address"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "type": "mapping(bytes32 => address)"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 380,
+                                      "type": "mapping(address => mapping(bytes32 => address))",
+                                      "value": "mappings"
+                                    },
+                                    "id": 389,
+                                    "name": "Identifier",
+                                    "src": "251:8:1"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 382,
+                                      "type": "address",
+                                      "value": "signer"
+                                    },
+                                    "id": 390,
+                                    "name": "Identifier",
+                                    "src": "260:6:1"
+                                  }
+                                ],
+                                "id": 392,
+                                "name": "IndexAccess",
+                                "src": "251:16:1"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 384,
+                                  "type": "bytes32",
+                                  "value": "document"
+                                },
+                                "id": 391,
+                                "name": "Identifier",
+                                "src": "268:8:1"
+                              }
+                            ],
+                            "id": 393,
+                            "name": "IndexAccess",
+                            "src": "251:26:1"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 386,
+                              "type": "address",
+                              "value": "docStore"
+                            },
+                            "id": 394,
+                            "name": "Identifier",
+                            "src": "280:8:1"
+                          }
+                        ],
+                        "id": 395,
+                        "name": "Assignment",
+                        "src": "251:37:1"
+                      }
+                    ],
+                    "id": 396,
+                    "name": "ExpressionStatement",
+                    "src": "251:37:1"
+                  }
+                ],
+                "id": 397,
+                "name": "Block",
+                "src": "230:76:1"
+              }
+            ],
+            "id": 398,
+            "name": "FunctionDefinition",
+            "src": "151:155:1"
+          }
+        ],
+        "id": 399,
+        "name": "ContractDefinition",
+        "src": "28:281:1"
+      }
+    ],
+    "id": 400,
+    "name": "SourceUnit",
+    "src": "0:309:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.0",
+  "updatedAt": "2021-06-17T07:42:21.182Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

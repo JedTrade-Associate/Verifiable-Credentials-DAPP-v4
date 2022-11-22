@@ -1,0 +1,48 @@
+{
+  "version": "https://schema.openattestation.com/2.0/schema.json",
+  "data": {
+    "$template": {
+      "name": "48017606-14b8-44de-aa58-bd11e256461c:string:main",
+      "type": "3b323d4c-b172-49c9-80df-40fbc714af02:string:EMBEDDED_RENDERER",
+      "url": "91254a29-d1dc-44a2-8f1c-757f7a16d0bc:string:https://tutorial-renderer.openattestation.com"
+    },
+    "recipient": {
+      "name": "a932b17e-9bb8-48ca-b310-f8cd6682d3f9:string:John Doe"
+    },
+    "issuers": [
+      {
+        "id": "5b3155cf-b03c-4e5a-b17f-f1c508c7810c:string:did:ethr:0xf76b50CBbBb9D05bb7b65AD37F9f2dA8786901B8",
+        "name": "ab2343de-b111-4f7f-ad81-a2b2448cde9a:string:Demo Issuer",
+        "revocation": {
+          "type": "815ea5e1-637f-4df7-9a6d-d4ada05773c5:string:OCSP_RESPONDER",
+          "location": "59e68316-8ff1-471c-9aad-d42e805996ad:string:https://ocsp-sandbox.openattestation.com"
+        },
+        "identityProof": {
+          "type": "bd485cd5-8023-4f48-98d3-8debc8a1ba48:string:DNS-DID",
+          "location": "c570493e-1f81-4a36-8e94-5989386566ef:string:great-silver-frog.sandbox.openattestation.com",
+          "key": "9a2ace66-a51b-45a2-aa1b-8ca75652c9a4:string:did:ethr:0xf76b50CBbBb9D05bb7b65AD37F9f2dA8786901B8#controller"
+        }
+      }
+    ]
+  },
+  "signature": {
+    "type": "SHA3MerkleProof",
+    "targetHash": "f16f97801b9ffe5e5c13458b199738bd410441b471300a731bc4f032d70494b5",
+    "proof": [],
+    "merkleRoot": "f16f97801b9ffe5e5c13458b199738bd410441b471300a731bc4f032d70494b5"
+  },
+  "proof": [
+    {
+      "type": "OpenAttestationSignature2018",
+      "created": "2022-09-27T08:45:43.896Z",
+      "proofPurpose": "assertionMethod",
+      "verificationMethod": "did:ethr:0xf76b50CBbBb9D05bb7b65AD37F9f2dA8786901B8#controller",
+      "signature": "0x33ca881bc89612668b3f9a7a9b976895cf5e6e11d1cc75c96d9c3ff9ec00c11d7e22e3584f1408c137e3db79d169f2c435fda28bc522ddd74dad8fdb2dce1e2b1c"
+    }
+  ],
+  "privacy": {
+    "obfuscatedData": [
+      "9bcc585a16466060852d029227892f7c16d3ad96afaa426fedc6b22b641c4b45"
+    ]
+  }
+}
