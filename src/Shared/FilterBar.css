@@ -1,0 +1,149 @@
+.date-range {
+  display: flex;
+  justify-content: space-between;
+  max-width: 530px;
+  margin-bottom: 20px;
+  margin-left:5px;
+}
+
+.input {
+  -webkit-appearance: none;
+  background-color: #fff;
+  border-radius: 6px;
+  border: 1px solid #d3dde6;
+  color: #0e3254;
+  font-family: "Inter-Regular";
+  font-size: inherit;
+  outline: none;
+  padding: 0 12px;
+  transition: border-color 0.2s;
+  display: inline-block;
+}
+
+.inputAll {
+  -webkit-appearance: none;
+  background-color: #fff;
+  border-radius: 6px;
+  border: 1px solid #d3dde6;
+  color: #0e3254;
+  font-family: "Inter-Regular";
+  font-size: inherit;
+  outline: none;
+  padding: 0 12px;
+  transition: border-color 0.2s;
+  display: inline-block;
+}
+
+.input-icons {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.input-dates {
+  -webkit-appearance: none;
+  background-color: #fff;
+  border-radius: 6px;
+  border: 1px solid #d3dde6;
+  color: #0e3254;
+  display: block;
+  font-size: inherit;
+  outline: none;
+  padding: 0 12px;
+  transition: border-color 0.2s;
+  width: 186px;
+  height: 40px;
+  font-family: "Inter-Regular";
+}
+
+.search {
+  width: 505px;
+  height: 40px;
+  padding-left: 45px;
+  display: block;
+}
+
+.status {
+  height: 40px;
+  width: 150px;
+}
+
+.date-mode {
+  height: 40px;
+  width: 220px;
+}
+
+/* .date-range_arrow {
+  flex-shrink: 0;
+  position: relative;
+  width: 36px;
+}
+
+.date-range_arrow:before {
+  border-right: 2px solid #d3dde6;
+  border-top: 2px solid #d3dde6;
+  box-sizing: border-box;
+  content: "";
+  display: block;
+  height: 18px;
+  left: 50%;
+  margin-left: -14px;
+  margin-top: -9px;
+  position: absolute;
+  top: 50%;
+  transform: rotate(45deg);
+  width: 18px;
+} */
+
+.input.-focused,
+.input:focus,
+.input-dates.-focused {
+  border-color: #438cd2;
+}
+
+.range-title {
+  font-size: 18px;
+  margin-top: 7px;
+  padding-right: 20px;
+  padding-left: 22px;
+}
+
+.nice-dates {
+  display: inline-block;
+  margin-top: 10px;
+  margin-right: 20px;
+}
+
+.searchBar {
+  padding-top: 20px;
+  padding-left: 20px;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.nice-dates-day:before {
+  background-color: #000;
+}
+.nice-dates-day:after {
+  border: 2px solid #000;
+}
+
+@media screen and (max-width: 767px) {
+  .searchBar {
+    padding: 20px 15px 0 15px;
+    width: 98%;
+  }
+
+  .input,
+  .input-dates {
+    width: 100%;
+  }
+
+  .inputAll {
+    width: 90%;
+    margin-left: 15px;
+  }
+
+  .nice-dates-popover {
+    width: 90% !important;
+  }
+}
