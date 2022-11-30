@@ -13,6 +13,7 @@ class Dashboard extends Component {
         super(props);
         this.state = {
             mounted: false,
+            //hardcoded for now
             allEvents: [
                 {eventName: 'Hariths Birthday', VerificationCode: '123456', numberOfAttendees: 23},
                 {eventName: 'Ruixuan Birthday', VerificationCode: '313112', numberOfAttendees: 12},
