@@ -43,7 +43,9 @@ class Configuration extends Component {
             newRpc: '',
             newTokenContractID: '',
             numberOfTokens: '',
-            numberofDays:''
+            numberofDays:'',
+
+            openAdvancedConfig: false
   
         }
     }
@@ -83,6 +85,12 @@ class Configuration extends Component {
         this.setState({newCity: e.target.value})
       }
       else if(e.target.id === 'purposeOfVerification'){
+        if(e.target.value === 'Token-Gate Events'){
+          this.setState({openAdvancedConfig: true})
+        }
+        else{
+          this.setState({openAdvancedConfig: false})
+        }
         this.setState({newPurpose: e.target.value})
       }
       else if(e.target.id === 'RPC'){
@@ -93,35 +101,37 @@ class Configuration extends Component {
       }
     }
     submitNewEvent = () => { 
-
+     
     }
 
 
     render(){
+
         const selectionRange = {
             startDate: new Date(this.state.newStartDate),
             endDate: new Date(this.state.newEndDate),
             key: 'Selection'
           }
 
+          //hardcoded for now
           const marks = [{
             value: 0,
             label: 'N.A.'
           },
           {
-            value: 20,
+            value: 1,
             label: 1
           },
           {
-            value: 40,
+            value: 2,
             label: 2
           },
           {
-            value: 60,
+            value: 3,
             label: 3
           },
           {
-            value:80,
+            value:4,
             label: 4
           },
         ]
@@ -138,24 +148,24 @@ class Configuration extends Component {
                         <input type='text'className="nameInput" onChange={this.handleInputChanges} id='name'></input>
                         
                         <p className="inputHeaders">ORGANISATION: *</p>
-                        <input type='text' className="nameInput" id='organisation'></input>
+                        <input type='text' className="nameInput" id='organisation' onChange={this.handleInputChanges}></input>
                         
                         <p className="inputHeaders">EMAIL: *</p>
-                        <input type='email' className="nameInput" id='email'></input>
+                        <input type='email' className="nameInput" id='email' onChange={this.handleInputChanges}></input>
                         
                         <p className="inputHeaders">COMPANY WEBSITE: </p>
-                        <input type='url' className="nameInput" id='companyWebsite'></input>
+                        <input type='url' className="nameInput" id='companyWebsite' onChange={this.handleInputChanges}></input>
 
                         <p className="inputHeaders" style={{marginLeft: '370px', marginTop: '-253px'}}>COUNTRY: </p>
-                        <select className="nameInput" id='country' style={{marginLeft: '370px'}}>
+                        <select className="nameInput" id='country' style={{marginLeft: '370px'}} onChange={this.handleInputChanges}>
                             <Countries></Countries>
                         </select>
 
                         <p className="inputHeaders" style={{marginLeft: '370px', marginTop: '0px'}}>CITY: </p>
-                        <input type='text' className="nameInput" style={{marginLeft: '370px'}} id='city'></input>
+                        <input type='text' className="nameInput" style={{marginLeft: '370px'}} id='city' onChange={this.handleInputChanges}></input>
 
                         <p className="inputHeaders" style={{marginLeft: '370px', marginTop: '0px'}}>PURPOSE OF VERIFICATION: </p>
-                        <select className="nameInput" id="purposeOfVerification" style={{marginLeft: '370px'}} >
+                        <select className="nameInput" id="purposeOfVerification" style={{marginLeft: '370px'}} onChange={this.handleInputChanges} >
                             <option value="IRL authentication">IRL authentication</option>
                             <option value="Token-Gate Events">Token-Gate Events</option>
                             <option value="Others">Others</option>
@@ -181,40 +191,48 @@ class Configuration extends Component {
                     </div> */}
 
                     <div>
+                    {this.state.openAdvancedConfig === true &&
                         <form className="thirdConfigurationForm">
-                        <p className="advancedConfigurationHeader">Advanced Configurations</p><FontAwesomeIcon icon={faChevronDown} style={{display: 'inline-block', marginLeft: '8px'}}></FontAwesomeIcon><br></br><br></br>                            <p className="inputHeaders3">RPC Endpoints: </p>
-                            <select className="advancedInput" id="RPC">
+                        <p className="advancedConfigurationHeader">Advanced Configurations</p><FontAwesomeIcon icon={faChevronDown} style={{display: 'inline-block', marginLeft: '8px'}}></FontAwesomeIcon><br></br><br></br><p className="inputHeaders3">RPC ENDPOINTS: </p>
+                            <select className="advancedInput" id="RPC" onChange={this.handleInputChanges}>
                                 <option value="EthereuemMainNet">Ethereum MainNet - Chain ID: 1</option>
                                 <option value="BinanceMainNet">Binance MainNet - Chain ID: 97 </option>
-                            </select>
+                            </select><br></br>
 
-                            <p className="inputHeaders3">Token Contract ID</p>
-                            <input type='text 'className="advancedInput" id="tokenID"></input>
-
+                            <p className="inputHeaders3">TOKEN CONTRACT ID</p>
+                            <input type='text 'className="advancedInput" id="tokenID" onChange={this.handleInputChanges}></input>
+                            <br></br>
                             <p className="inputHeaders3">Number of Tokens (NFTS) held by user</p>
                             <div className="sliderTokens">
                             <Slider
                             aria-label="Restricted values"
-                            step={20}
+                            step={null}
                             valueLabelDisplay="auto"
                             onChange={this.sliderChange}
                             marks={marks}
+                            max = {5}
+                            min = {0}
                             />
+                            {/* <input type='text' className='sliderInput'></input> */}
                             </div>
 
                             <p className="inputHeaders3">Held NFTs for number of days.</p>
                             <div className="sliderTokens">
                             <Slider
                             aria-label="Restricted values"
-                            step={20}
+                            step={null}
                             valueLabelDisplay="auto"
                             onChange={this.sliderChange2}
                             marks={marks}
+                            max = {5}
+                            min = {0}
 
                             />
                             </div>
-                            <button type="submit" className="submitBtnConfiguration" onClick={this.submitNewEvent}>Submit Event Conditions</button>
+                          
                         </form>
+                        }
+                        <button type="submit" className="submitBtnConfiguration" onClick={this.submitNewEvent}>Submit Event Conditions</button>
                     </div>
 
                 
