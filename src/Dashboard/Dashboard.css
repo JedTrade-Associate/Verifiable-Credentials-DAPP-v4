@@ -1,0 +1,252 @@
+/*Dashboard Section*/
+.DashboardDiv{
+    background-color: #0e102f;
+    height: 1200px;
+    width: 2000px;
+    margin-left: -100px;
+    margin-top: -250px;
+    position: absolute;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.ActivitiesBox{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1);
+    transition: 0.3s;
+    width:700px;
+   /* margin-left: 455px; */
+   /* margin: top right bottom left */
+    /* margin: 30px 50px 20px -550px; */
+    margin-left: -560px;
+    background-color: #1a1d43;
+    color: white;
+    border: 1px solid rgba(0,0,0,0.2);
+    height: 500px;
+    border-radius: 8px;
+    display: inline-block;
+}
+.ActivitiesHeader{
+    font-size: 20px;
+    margin: 40px 0px 0px 60px;
+    float: left;
+    font-weight: 550;
+    padding-bottom: 50px;
+    
+}
+.EventsBox{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1);
+    transition: 0.3s;
+    width:450px;
+   /* margin-left: 455px; */
+   /* margin: top right bottom left */
+   /* margin: 0px 0px 20px 0px; */
+   margin-top: 40px;
+   margin-left: 40px;
+    background-color: #64748b;
+    color: white;
+    border: 1px solid rgba(0,0,0,0.2);
+    height: 500px;
+    border-radius: 8px;
+    display: inline-block;
+    /* overflow-x: hidden; */
+    overflow-y: auto;
+}
+.EventsHeader{
+    font-size: 20px;
+    margin: 40px 0px 0px 60px;
+    float: left;
+    font-weight: 550;
+    letter-spacing: 1px;
+}
+.mainHeader{
+    font-size: 30px;
+    color: white;
+    margin: 280px 0px 0px -1600px;
+    font-weight: 600;
+}
+.mainHeader2{
+    font-size: 30px;
+    color: white;
+    margin: 280px 0px 0px -1500px;
+    font-weight: 600;
+}
+
+/*Configuration Section*/
+.configurationDiv{
+    background-color: #0e102f;
+    height: 1200px;
+    width: 2000px;
+    margin-left: -100px;
+    margin-top: -250px;
+    position: absolute;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.EventFormBox{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1);
+    transition: 0.3s;
+    width:850px;
+    margin-left: -600px;
+    margin-top: 50px;
+    background-color: #64748b;
+    color: white;
+    border: 1px solid rgba(0,0,0,0.2);
+    height: 800px;
+    border-radius: 8px;
+    display: inline-block;
+}
+.EventFormHeader{
+    font-size: 20px;
+    margin: 40px 0px 0px 70px;
+    float: left;
+    font-weight: 550;
+    letter-spacing: 1px;
+    display: block;
+}
+
+.eachEventCard{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1);
+    transition: 0.3s;
+    width: 400px;
+    /* margin-left: -125px; */
+    margin-top: 20px;
+    background-color: #8a9fbd;
+    color: white;
+    border: 1px solid rgba(0,0,0,0.2);
+    height: 130px;
+    border-radius: 8px;
+    display: inline-block;
+
+}
+.eachEventCard:hover{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1);
+    transition: 0.3s;
+    width: 400px;
+    /* margin-left: -125px; */
+    margin-top: 20px;
+    background-color: #8a9fbd;
+    color: white;
+    border: 1px solid rgba(0,0,0,0.2);
+    height: 130px;
+    border-radius: 8px;
+    display: inline-block;
+    cursor: pointer;
+
+}
+.dashboardEventName{
+    font-size: 18px;
+    padding-top: 20px;
+    text-align: left;
+    margin-left: 30px;
+}
+.editEventBtn{
+    float: right;
+    margin-right: 30px;
+    margin-top: 15px;
+}
+.nameInput{
+    border-radius: 7px;
+    width: 40%;
+    height: 35px;
+    border:2px solid #3b82f6;
+    margin-bottom: 8px;
+    display: flex;
+    color: #3b82f6;
+    font-size: 15px;
+    
+}
+.nameInput:focus{
+    outline: none !important;
+    border-radius: 7px;
+    width:40%;
+    height: 35px;
+    border:2px solid ;
+    margin-bottom: 8px;
+    display: flex;
+    color: #3b82f6;
+    font-size: 15px;
+    
+}
+.configurationForm{
+    margin-top: 100px;
+    margin-left: 60px;
+}
+.inputHeaders{
+    /* margin-left: -170px; */
+    display: flex;
+}
+.inputHeaders2{
+    margin-top: 90px;
+    width: fit-content;
+}
+.secondConfigurationForm{
+    /* margin-left: 420px; */
+    margin: auto;
+    width: fit-content;
+}
+
+.thirdConfigurationForm{
+    margin-left: 395px;
+    margin-top: -400px;
+}
+.advancedConfigurationHeader{
+    font-size: 18px;
+    display: inline-block;
+    margin-left: -70px;
+}
+.advancedInput{
+    border-radius: 7px;
+    width: 70%;
+    height: 35px;
+    border:2px solid #3b82f6;
+    margin-bottom: 8px;
+    display: flex;
+    color: #3b82f6;
+    font-size: 15px;
+    margin-left: 40px;
+}
+.advancedInput:focus{
+    outline: none !important;
+    border-radius: 7px;
+    width:70%;
+    height: 35px;
+    border:2px solid ;
+    margin-bottom: 8px;
+    display: flex;
+    color: #3b82f6;
+    font-size: 15px;
+    margin-left: 40px;
+}
+.inputHeaders3{
+    display: flex;
+    margin-left: 40px;
+}
+.sliderTokens{
+    width: 80%;
+    color: #3b82f6;
+    margin-left: 30px;
+}
+.submitBtnConfiguration{
+    background-color: #3b82f6;
+    color: white;
+    font-size: 17px;
+    padding: 10px;
+    border-radius: 3px;
+    margin-top: 50px;
+    margin-left: 90px;
+}
+.DateRangePicker{
+    margin-left: -460px;
+    margin-top: -140px;
+}
+
+.SliderThing{
+    color: #3b82f6;;
+}
+
+.sliderTokens .MuiSlider-root{
+    color: white;
+    width: 90%;
+}
+
+
+.sliderTokens .MuiSlider-markLabel{
+    color: white;
+}
