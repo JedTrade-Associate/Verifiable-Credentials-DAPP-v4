@@ -1,12 +1,12 @@
-import { withRouter } from "react-router-dom";
+import { BrowserRouter, Route, Switch, withRouter } from "react-router-dom";
 import React, { Component, useState } from 'react'
 import './Dashboard.css';
 import SearchBar from '../Shared/SearchBar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend } from 'recharts';
-const data = [{name: 'Events', uv: 400, pv: 2400, amt: 2400},
-{name: 'No', uv: 200, pv: 1200, amt: 1200}];
+import Configuration from "./Configuration";
+import Settings from "./Settings";
 
 class Dashboard extends Component {
     constructor(props) {
@@ -57,6 +57,14 @@ class Dashboard extends Component {
         }
         return(
             <div className="DashboardDiv">
+
+            {/* <BrowserRouter>
+               <Switch>
+                <Route exact path={"/Dashboard"}></Route>
+                <Route exact path={"/Configuration"} component={Configuration}></Route>
+                <Route exact path={"/Settings"} component={Settings}></Route>
+               </Switch>
+            </BrowserRouter> */}
             <main className="items-center">
                 <p className="mainHeader">Dashboard</p>
 
@@ -64,8 +72,8 @@ class Dashboard extends Component {
                 <div className="ActivitiesBox">
                     <p className="ActivitiesHeader">Attendees</p>
                     <BarChart width={650} height={300} data={allEvents} barSize={70}>
-                    <XAxis dataKey="eventName" stroke="white" label={{value: 'Events', fill: 'white', offset: -5, position: 'insideBottom'}}/>
-                    <YAxis dataKey="numberOfAttendees" stroke="white" label={{ value: 'Number of Attendees', angle: -90, fill: 'white'}}></YAxis>
+                    <XAxis dataKey="eventName" stroke="white" label={{value: 'Events', fill: '#3b82f6', offset: -5, position: 'insideBottom', fontSize: '18px'}}/>
+                    <YAxis dataKey="numberOfAttendees" stroke="white" label={{ value: 'Number of Attendees', angle: -90, fill: '#3b82f6', fontSize: '16px'}}></YAxis>
                     <Tooltip  cursor={{ stroke: '#64748b', strokeWidth: 2, fill:'#64748b'}} />
                     <Legend verticalAlign="top" height={36} align="right" margin={{top: 0, left: 0, right: 0, bottom: 0 }}/>
                     <Bar dataKey="numberOfAttendees" fill="#3b82f6" width={10}/>
