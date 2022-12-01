@@ -1,5 +1,5 @@
 import { withRouter } from "react-router-dom";
-import React, { Component, useState } from 'react'
+import React, { Component, useState, useRef } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser,  faChevronDown} from '@fortawesome/free-solid-svg-icons';
 import Countries from '../Include/DropdownValues/Countries';
@@ -8,22 +8,6 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 import { DateRange, Calendar } from 'react-date-range';
 import { Slider } from "@material-ui/core";
 import { createTheme } from "@mui/material/styles";
-
-const theme = createTheme({
-    status: {
-      danger: '#e53e3e',
-    },
-    palette: {
-      primary: {
-        main: '#0971f1',
-        darker: '#053e85',
-      },
-      neutral: {
-        main: '#64748B',
-        contrastText: '#fff',
-      },
-    },
-  });
 
 class Configuration extends Component {
     constructor(props) {
@@ -45,7 +29,9 @@ class Configuration extends Component {
             numberOfTokens: '',
             numberofDays:'',
 
-            openAdvancedConfig: false
+            openAdvancedConfig: false,
+            disableSlideInput: true,
+            disableSlideInput2: true
   
         }
     }
@@ -58,10 +44,27 @@ class Configuration extends Component {
         this.setState({newStartDate: ranges.Selection.startDate, newEndDate: ranges.Selection.endDate})
     }
     sliderChange = (event, value) => {
-        this.setState({numberOfTokens: value})
+       if(value === 5){
+        var inputSlider = document.getElementById('numberofTokensInput')
+        this.setState({disableSlideInput: false})
+        inputSlider.focus();
+       }
+       else{
+        this.setState({numberOfTokens: value, disableSlideInput: true})
+       }
+        
+        
     }
     sliderChange2 = (event, value) => {
-      this.setState({numberofDays: value})
+      if(value === 5){
+        var inputSlider = document.getElementById('numberofTokensInput2')
+        this.setState({disableSlideInput2: false});
+        inputSlider.focus();
+       }
+       else{
+        this.setState({numberofDays: value, disableSlideInput2: true});
+       }
+      
   }
 
     handleInputChanges = (e) => {
@@ -99,11 +102,37 @@ class Configuration extends Component {
       else if(e.target.id === 'tokenID'){
         this.setState({newTokenContractID: e.target.value})
       }
+      else if(e.target.id === 'numberofTokensInput'){
+        const numbers = /^\d+$/;
+        var inputSlider = document.getElementById('numberofTokensInput')
+
+        if(!e.target.value.toString().match(numbers)) {
+          inputSlider.style.border = '2px solid rgb(255, 25, 25)'
+        }
+        else if(e.target.value.toString().match(numbers)){
+          inputSlider.style.border = '2px solid rgb(59, 130, 246)'
+        }
+
+        this.setState({numberOfTokens: e.target.value})
+      }
+      else if(e.target.id === 'numberofTokensInput2'){
+        const numbers = /^\d+$/;
+        var inputSlider = document.getElementById('numberofTokensInput2')
+
+        if(!e.target.value.toString().match(numbers)) {
+          inputSlider.style.border = '2px solid rgb(255, 25, 25)'
+        }
+        else if(e.target.value.toString().match(numbers)){
+          inputSlider.style.border = '2px solid rgb(59, 130, 246)'
+        }
+        
+        this.setState({numberofDays: e.target.value})
+      }
     }
     submitNewEvent = () => { 
      
     }
-
+    
 
     render(){
 
@@ -133,6 +162,9 @@ class Configuration extends Component {
           {
             value:4,
             label: 4
+          },
+          {
+            value:5
           },
         ]
 
@@ -213,8 +245,9 @@ class Configuration extends Component {
                             max = {5}
                             min = {0}
                             />
-                            {/* <input type='text' className='sliderInput'></input> */}
                             </div>
+
+                            <input type='text' className='sliderInput' id='numberofTokensInput' onChange={this.handleInputChanges} disabled={this.state.disableSlideInput}></input>
 
                             <p className="inputHeaders3">Held NFTs for number of days.</p>
                             <div className="sliderTokens">
@@ -229,6 +262,7 @@ class Configuration extends Component {
 
                             />
                             </div>
+                            <input type='text' className='sliderInput' id='numberofTokensInput2' onChange={this.handleInputChanges} disabled={this.state.disableSlideInput2}></input>
                           
                         </form>
                         }

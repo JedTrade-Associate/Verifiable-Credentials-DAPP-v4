@@ -190,11 +190,11 @@
 .advancedConfigurationHeader{
     font-size: 18px;
     display: inline-block;
-    margin-left: 80px;
+    margin-left: 30px;
 }
 .advancedInput{
     border-radius: 7px;
-    width: 110%;
+    width: 82%;
     height: 35px;
     border:2px solid #3b82f6;
     margin-bottom: 8px;
@@ -206,7 +206,7 @@
 .advancedInput:focus{
     outline: none !important;
     border-radius: 7px;
-    width:110%;
+    width:82%;
     height: 35px;
     border:2px solid ;
     margin-bottom: 8px;
@@ -230,7 +230,7 @@
     font-size: 17px;
     padding: 10px;
     border-radius: 3px;
-    margin-top: 00px;
+    margin-top: 30px;
     position: absolute;
     margin-left: 130px;
 }
@@ -255,10 +255,30 @@
 
 .sliderTokens .MuiSlider-root{
     color: white;
-    width: 150%;
+    width: 120%;
 }
 
 
 .sliderTokens .MuiSlider-markLabel{
     color: white;
+}
+.sliderInput{
+    width: 50px;
+    border-radius: 3px;
+    height: 26px;
+    /* float: right; */
+    margin-left: 330px;
+    top: -50px;
+    color: #3b82f6;
+}
+.sliderInput:focus{
+    width: 50px;
+    border-radius: 3px;
+    height: 26px;
+    /* float: right; */
+    margin-left: 330px;
+    top: -50px;
+    color: rgb(59, 130, 246);
+    border: 2px solid  rgb(59, 130, 246);
+    outline: none !important;
 }
