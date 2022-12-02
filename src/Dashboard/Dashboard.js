@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Switch, withRouter } from "react-router-dom";
+import { Outlet, Link, BrowserRouter, Routes, Route } from "react-router-dom";
 import React, { Component, useState } from 'react'
 import './Dashboard.css';
 import SearchBar from '../Shared/SearchBar';
@@ -55,16 +55,9 @@ class Dashboard extends Component {
              <p className="dashboardEventName">Event: {mapEvents[i].eventName}</p>
                         <p className="dashboardEventName">Verification Code: {mapEvents[i].VerificationCode}</p></div></>)
         }
-        return(
+        return (
+            <>
             <div className="DashboardDiv">
-
-            {/* <BrowserRouter>
-               <Switch>
-                <Route exact path={"/Dashboard"}></Route>
-                <Route exact path={"/Configuration"} component={Configuration}></Route>
-                <Route exact path={"/Settings"} component={Settings}></Route>
-               </Switch>
-            </BrowserRouter> */}
             <main className="items-center">
                 <p className="mainHeader">Dashboard</p>
 
@@ -86,8 +79,18 @@ class Dashboard extends Component {
                     {listArr}
                 </div>
                 </span>
-            </main>
+                </main>
             </div>
+            <BrowserRouter>
+                    <Switch>
+                        <Routes>
+                            <Route exact path={"/Dashboard"}></Route>
+                            <Route exact path={"/Configuration"} component={Configuration}></Route>
+                            <Route exact path={"/Settings"} component={Settings}></Route>
+                        </Routes>
+               </Switch>
+            </BrowserRouter>
+            </>
             
         )
     }

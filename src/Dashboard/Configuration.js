@@ -130,7 +130,7 @@ class Configuration extends Component {
       }
     }
     submitNewEvent = () => { 
-     
+
     }
     
 
