@@ -1,5 +1,5 @@
-import { Outlet, Link, BrowserRouter, Routes, Route } from "react-router-dom";
-import React, { Component, useState } from 'react'
+import { Outlet, Link, BrowserRouter, Route, withRouter, Switch, useHistory } from "react-router-dom";
+import React, { Component, useEffect, useState } from 'react'
 import './Dashboard.css';
 import SearchBar from '../Shared/SearchBar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,60 +7,49 @@ import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 import Configuration from "./Configuration";
 import Settings from "./Settings";
+import { render } from "@testing-library/react";
 
-class Dashboard extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            mounted: false,
-            //hardcoded for now
-            allEvents: [
-                {eventName: 'Hariths Birthday', VerificationCode: '123456', numberOfAttendees: 23},
-                {eventName: 'Ruixuan Birthday', VerificationCode: '313112', numberOfAttendees: 12},
-                {eventName: 'Seans Birthday', VerificationCode: '993122', numberOfAttendees: 17},
-                {eventName: 'Brians Birthday', VerificationCode: '677222', numberOfAttendees: 39},
-                {eventName: 'My Birthday', VerificationCode: '091272', numberOfAttendees: 67},
-                
-            ],
-
-        }
-    }
-
-    async componentDidMount() {
+export const Dashboard2 = () => {
+    const [allEvents, setEvents] = useState([
+        {eventName: 'Hariths Birthday', VerificationCode: '123456', numberOfAttendees: 23},
+        {eventName: 'Ruixuan Birthday', VerificationCode: '313112', numberOfAttendees: 12},
+        {eventName: 'Seans Birthday', VerificationCode: '993122', numberOfAttendees: 17},
+        {eventName: 'Brians Birthday', VerificationCode: '677222', numberOfAttendees: 39},
+        {eventName: 'My Birthday', VerificationCode: '091272', numberOfAttendees: 67},
         
+    ]);
+    const history = useHistory();
+
+    useEffect(() => {
+        
+    })
+    const editEvent = () => {
+        history.push('/EditConfiguration')
+    // this.props.history.push({
+            //     pathname: '/editConfiguration',
+            //       state: this.state.allEvents // your data array of objects
+            //   })
+        //     this.props.history.push({
+        //         pathname: '/editConfiguration',
+        //           state: this.state.allEvents[0] // your data array of objects
+        //       })
+        //    this.props.history.go()
+
     }
-
-    editEvent = () => {
-        // this.props.history.push({
-        //     pathname: '/editConfiguration',
-        //       state: this.state.allEvents // your data array of objects
-        //   })
-        this.props.history.push({
-            pathname: '/editConfiguration',
-              state: this.state.allEvents[0] // your data array of objects
-          })
-       this.props.history.go()
-    }
-    render(){
-        let listArr= [];
-
-        let allEvents = this.state.allEvents;
-        var mapEvents = allEvents.map((each) => {
-            const eachMapped = Object.assign({}, each);
-            return eachMapped;
-        });
-
-        for(let i = 0; i < mapEvents.length; i++){
-            listArr.push(<><div className="eachEventCard" onClick={this.editEvent}> <button className="editEventBtn"><FontAwesomeIcon icon={faPencilAlt}></FontAwesomeIcon></button>
-             <p className="dashboardEventName">Event: {mapEvents[i].eventName}</p>
-                        <p className="dashboardEventName">Verification Code: {mapEvents[i].VerificationCode}</p></div></>)
-        }
-        return (
+        return(
             <>
             <div className="DashboardDiv">
+    
+            {/* <BrowserRouter>
+               <Switch>
+                <Route exact path={"/Dashboard"}></Route>
+                <Route exact path={"/Configuration"} component={Configuration}></Route>
+                <Route exact path={"/Settings"} component={Settings}></Route>
+               </Switch>
+            </BrowserRouter> */}
             <main className="items-center">
                 <p className="mainHeader">Dashboard</p>
-
+    
                 <span>
                 <div className="ActivitiesBox">
                     <p className="ActivitiesHeader">Attendees</p>
@@ -73,27 +62,28 @@ class Dashboard extends Component {
                     {/* <Bar dataKey="uv" fill="#82ca9d" /> */}
                     </BarChart>
                 </div>
-
+    
                 <div className="EventsBox">
                     <p className="EventsHeader">Events</p>
-                    {listArr}
+                    {allEvents.map(function(object, i){
+                       return <div className="eachEventCard" onClick={editEvent}> <button className="editEventBtn"><FontAwesomeIcon icon={faPencilAlt}></FontAwesomeIcon></button>
+                       <p className="dashboardEventName">Event: {object.eventName}</p>
+                        <p className="dashboardEventName">Verification Code: {object.VerificationCode}</p></div>;
+                    })}
                 </div>
                 </span>
-                </main>
+            </main>
             </div>
             <BrowserRouter>
-                    <Switch>
-                        <Routes>
-                            <Route exact path={"/Dashboard"}></Route>
-                            <Route exact path={"/Configuration"} component={Configuration}></Route>
-                            <Route exact path={"/Settings"} component={Settings}></Route>
-                        </Routes>
-               </Switch>
-            </BrowserRouter>
-            </>
-            
-        )
-    }
+            <Switch>
+                    <Route exact path={"/Dashboard"}></Route>
+                    <Route exact path={"/Configuration"} component={Configuration}></Route>
+                    <Route exact path={"/Settings"} component={Settings}></Route>
+       </Switch>
+    </BrowserRouter>
+    </>
+)
+   
 }
 
-export default withRouter(Dashboard);
+export default withRouter(Dashboard2);
