@@ -1,4 +1,4 @@
-import { Outlet, Link, BrowserRouter, Routes, Route } from "react-router-dom";
+import { Outlet, Link, BrowserRouter, Route } from "react-router-dom";
 import React, { Component, useState } from 'react'
 import './Dashboard.css';
 import SearchBar from '../Shared/SearchBar';
@@ -83,11 +83,9 @@ class Dashboard extends Component {
             </div>
             <BrowserRouter>
                     <Switch>
-                        <Routes>
                             <Route exact path={"/Dashboard"}></Route>
                             <Route exact path={"/Configuration"} component={Configuration}></Route>
                             <Route exact path={"/Settings"} component={Settings}></Route>
-                        </Routes>
                </Switch>
             </BrowserRouter>
             </>
