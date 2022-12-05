@@ -7,6 +7,9 @@ import Dashboard from '../Dashboard/Dashboard';
 import Settings from '../Dashboard/Settings';
 import EditConfiguration from '../Dashboard/EditConfiguration.js';
 import Router from 'react-router';
+import { SignPage2 } from '../SignUp/SignPage';
+import { Dashboard2 } from '../Dashboard/Dashboard';
+import { Configuration2} from '../Dashboard/Configuration'
 
 
   class Routes extends Component {
@@ -36,7 +39,7 @@ import Router from 'react-router';
           exact={true}
           path='/SignUpPage'
           render={(e, props) =>
-            <SignUpPage {...e} data={props} />
+            <SignPage2 {...e} data={props} />
           }
         />
          <Route
@@ -44,7 +47,7 @@ import Router from 'react-router';
           path='/Configuration'
           render={(e, props) => (
             <Sidebar>
-            <Configuration {...e} data={props} />    
+            <Configuration2 {...e} data={props} />    
             </Sidebar>
           )}
         />
@@ -62,7 +65,7 @@ import Router from 'react-router';
           path='/Dashboard'
           render={(e, props) => (
            <Sidebar>
-            <Dashboard {...e} data={props} />    
+            <Dashboard2 {...e} data={props} />    
             </Sidebar>
           )}
         />
