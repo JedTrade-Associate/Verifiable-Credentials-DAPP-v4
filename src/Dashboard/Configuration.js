@@ -1,4 +1,4 @@
-import { withRouter } from "react-router-dom";
+import { withRouter, useHistory } from "react-router-dom";
 import React, { Component, useState, useRef } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser,  faChevronDown} from '@fortawesome/free-solid-svg-icons';
@@ -8,6 +8,8 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 import { DateRange, Calendar } from 'react-date-range';
 import { Slider } from "@material-ui/core";
 import { createTheme } from "@mui/material/styles";
+
+const axios = require('axios');
 
 export const Configuration2 = () => {
   const [nameInput, setNameInput] = useState('');
@@ -23,6 +25,7 @@ export const Configuration2 = () => {
   const [tokenIDInput, setTokenIDInput] = useState('');
   const [numberOfTokensInput, setNumberOfTokensInput] = useState('');
   const [numberOfDaysInput, setNumberOfDaysInput] = useState('');
+  const history = useHistory();
 
   // const [inputList, setInputList] = useState([{name: '', org: '', email: '', companyweb: '', country: '', city: '', purpose: '',
   // startDate: new Date(), endDate: new Date(), rpc: '', tokenId: '', numberofTokens: '', numberofdays: ''}]);
@@ -173,7 +176,38 @@ export const Configuration2 = () => {
       }
 
     }
-  }
+    }
+
+    const saveConditions = async () => {
+
+        var identifierCode = Math.floor(100000 + Math.random() * 900000);
+        var startdate = startDateInput.toLocaleDateString("en-UK");
+        var enddate = endDateInput.toLocaleDateString("en-UK");
+
+        var conditions = {
+            name: `${nameInput}`,
+            org: `${orgInput}`,
+            email: `${emailInput}`,
+            companyWeb: `${companyWebInput}`,
+            purpose: `${purposeInput}`,
+            startDate: `${startdate}`,
+            endDate: `${enddate}`,
+            rpc: `${rpcInput}`,
+            tokenID: `${tokenIDInput}`,
+            numberofTokens: `${numberOfTokensInput}`,
+            numberofDays: `${numberOfDaysInput}`,
+            identifier: `${identifierCode}`,
+            attendees: 0,
+        }
+
+        axios({
+            method: "POST",
+            url: "http://localhost:3002/api/v1/conditions",
+            data: conditions
+        })
+        history.push('/Dashboard')
+        console.log(conditions)
+    }
 
   return(
     <div className="configurationDiv">
@@ -183,7 +217,7 @@ export const Configuration2 = () => {
                     
                     <form className="configurationForm">
 
-                        <p className="inputHeaders">NAME: * </p>
+                        <p className="inputHeaders">EVENT NAME: * </p>
                         <input type='text'className="nameInput" onChange={handleInputChanges} id='name'></input>
                         
                         <p className="inputHeaders">ORGANISATION: *</p>
@@ -241,7 +275,7 @@ export const Configuration2 = () => {
                             <p className="inputHeaders3">TOKEN CONTRACT ID</p>
                             <input type='text 'className="advancedInput" id="tokenID" onChange={handleInputChanges}></input>
                             <br></br>
-                            <p className="inputHeaders3">Number of Tokens (NFTS) held by user</p>
+                      <p className="inputHeaders3">Number of Tokens (NFTS) held by user (&#8805;)</p>
                             <div className="sliderTokens">
                             <Slider
                             aria-label="Restricted values"
@@ -256,7 +290,7 @@ export const Configuration2 = () => {
 
                             <input type='text' className='sliderInput' id='numberofTokensInput' onChange={handleInputChanges} disabled={disableSliderInput1}></input>
 
-                            <p className="inputHeaders3">Held NFTs for number of days.</p>
+                            <p className="inputHeaders3">Held NFTs for number of days. (&#8805;)</p>
                             <div className="sliderTokens">
                             <Slider
                             aria-label="Restricted values"
@@ -273,7 +307,7 @@ export const Configuration2 = () => {
                           
                         </form>
                         }
-                        <button type="submit" className="submitBtnConfiguration" onClick={submitNewEvent}>Submit Event Conditions</button>
+                        <button type="submit" className="submitBtnConfiguration" onClick={saveConditions}>Submit Event Conditions</button>
                     </div>
 
                 

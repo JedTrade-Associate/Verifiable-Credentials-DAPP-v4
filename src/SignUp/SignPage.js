@@ -3,6 +3,8 @@ import { withRouter, BrowserRouter, Link, useHistory} from 'react-router-dom';
 import "./SignPage.css";
 import swal from 'sweetalert'
 import { useWeb3React } from '@web3-react/core'
+import { Web3ReactProvider } from '@web3-react/core'
+import { Web3Provider } from '@ethersproject/providers'
 import { InjectedConnector } from '@web3-react/injected-connector'
 import { ethers } from 'ethers'
 import { useRef, useEffect } from "react"
@@ -10,14 +12,112 @@ import { QRCodeCanvas } from "qrcode.react"
 import { concat } from 'ethers/lib/utils'
 import { v4 as uuidv4 } from 'uuid';
 const axios = require('axios');
+import { Dots, MinimalSpinner, TrinitySpinner, Waves, ProgressBar, Spinner } from 'loading-animations-react';
 
 export const SignPage2 = () => {
+    const getLibrary = (provider) => {
+        const library = new Web3Provider(provider, 'any')
+        library.pollingInterval = 15000
+        return library
+    }
+
     const[isLogin, setIsLogin] = useState(true);
     const [Ptext, setPagetext] = useState("Start Generating Your Verifiable Credentials and Proof Ownership");
     const [isVerified, setIsVerified] = useState(false);
     const [errorText, setErrorText] = useState("");
     const [emailInput, setEmailInput] = useState("");
     const [passwordInput, setPasswordInput] = useState("");
+
+    // Web 3 login
+    const { activate, deactivate, library, account, chainId, message } = useWeb3React()
+    const [connected, setConnect] = useState("connect");
+
+    const injected = new InjectedConnector({
+        supportedChainIds: [1, 3, 4, 5, 42],
+    })
+
+    // QR generator
+    const [url, setUrl] = useState("");
+    const [duplicate, setDuplicate] = useState("");
+    const qrRef = useRef();
+
+    // Connect Wallet
+    const onConnectClicked = async () => {
+        try {
+            if (connected == "connect") {
+                await activate(injected)
+                setConnect("Disconnect")
+                setDuplicate("")
+            }
+            else if (connected == "Disconnect") {
+                deactivate()
+                setConnect("connect")
+                setUrl("")
+            }
+        } catch (ex) {
+            console.log(ex)
+        }
+    }
+
+    // Sign with MetaMask
+    const onMetamaskSignClicked = async () => {
+        setUrl("")
+
+        var today = new Date();
+        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        var dateTime = date + ' ' + time;
+
+        const message = (
+            `note:
+        Signing a message is required to 
+        prove that you are in control of 
+        the wallet you are enrolling. 
+        Signing is a safe,gas-less 
+        transaction that does not in 
+        any way give permission 
+        to perform any transactions on 
+        your behalf.
+
+Issued at:
+        ${dateTime}
+
+Account: ${account}
+        `)
+
+        const flatSignature = await library.getSigner().signMessage(message)
+
+        const signerAddr = await ethers.utils.verifyMessage(message, flatSignature)
+        if (signerAddr != account) {
+            console.log(signerAddr)
+            console.log("not verified")
+        }
+        else {
+            console.log("Wallet Verified -- Processing Document")
+            APIProcess(dateTime);
+        }
+    }
+
+    const APIProcess = async (dateTime) => {
+        axios({
+            method: "POST",
+            url: "http://localhost:3002/api/v1/users",
+            data: {
+                wallet: `${account}`,
+                deviceID: "",
+            }
+        }).then(res => {
+            var encodedStringBtoA = window.btoa(account + dateTime);
+            setUrl(encodedStringBtoA);
+        }).catch(function(error) {
+            if ( error.response.status == 500) {
+                console.log(error.response.data);
+                console.log("Duplicated VC");
+                setDuplicate("500")
+            }
+        });
+    }
+
 
     const history = useHistory();
 
@@ -32,7 +132,19 @@ export const SignPage2 = () => {
     }
     const onVerifyClick = () => {
         setIsLogin(true), setIsVerified(true), setPagetext('Start Generating Your Verifiable Credentials and Proof Ownership')
-   }
+    }
+
+    const qrcode = (
+        <div className="flex flex-row space-x-3">
+            <QRCodeCanvas
+                id="qrCode"
+                value={url}
+                size={270}
+                bgColor={"white"}
+                level={"H"}
+            />
+        </div>
+    );
     
 
     const handleInputField = async (e) => {
@@ -72,13 +184,36 @@ export const SignPage2 = () => {
     }
     
     const VCGen = () => {
-        return(
-            <div className="bg-white rounded-2xl shadow-2xl py-8 md:w-1/2 items-center transition duration-500 ease-out" id='generateCredBox'>
+        return (
+            <>
+                <div className="bg-white rounded-2xl shadow-2xl py-8 md:w-1/2 items-center transition duration-500 ease-out" id='generateCredBox'>
+                    <div className="flex flex-col items-center">
                         <h3 className='text-xl font-semibold text-blue-400 pt-4'>Generate Verifiable Credentials</h3><br></br>
                         {/* Inputs */}
                         <div className='flex flex-col items-center justify-center'>
-                            <div class="box-content p-4 border-4" id='qrCodeBox'></div>
-                            <button className='rounded-2xl m-2 text-white bg-blue-400 w-10px px-4 py-2 shadow-md hover:text-blue-400 hover:bg-white transition duration-200 ease-in'>
+                            {(url != "") ? (
+                                <div class="box-content p-4 border-4 flex flex-col items-center justify-center" id='qrCodeBox'><div ref={qrRef}>{qrcode}</div></div>
+
+                            ) : (duplicate == "500") ?
+                                    (
+                                        <div class="box-content p-4 flex flex-col items-center justify-center" id='qrCodeBox'>
+                                        <div className="flex flex-col items-center pt-5 space-y-4">
+                                                <img width={150} height={150} src={require('../Assets/76699-error.gif')} alt="VC has been Duplicated" />
+                                                <h4 className='text-lg text-gray-400 pt-2'>Wallet has already been registered to a device</h4><br></br>
+                                        </div>
+                                        </div>
+                                    )
+                                    : (
+                                            <div class="box-content p-4 flex flex-col items-center justify-center" id='qrCodeBox'>
+                                                <div className="flex flex-col items-center pt-5 space-y-4">
+                                                    <Waves backgroundColor="#fff" text="Connect Wallet and Sign to Generate your VC" waveColor="#afeeee" className="w-50 text-sky-600 font-bold" />
+                                                </div>
+                                            </div>
+                                        )
+                            }
+                            <button className='rounded-2xl m-2 text-white bg-blue-400 w-10px px-6 py-2 shadow-md hover:text-blue-400 hover:bg-white transition duration-200 ease-in'
+                                onClick={onMetamaskSignClicked}
+                            >
                                 SIGN
                       </button>
                         </div>
@@ -86,7 +221,9 @@ export const SignPage2 = () => {
                         <div className="inline-block border-[1px] justify-center w-20 border-blue-400 border-solid"></div>
                         <p className='text-blue-400 mt-4 text-sm'>Event Organiser?</p>
                         <p className='text-blue-400 mb-4 text-sm font-medium cursor-pointer' onClick={onVClick}>Navigate To Verifier Page</p>
-            </div>
+                    </div>
+                </div>
+            </>
         )
     }
 
@@ -116,7 +253,7 @@ export const SignPage2 = () => {
                               <input type="password" className='rounded-xl px-2 py-1 w-4/5 md:w-full border-[2px] border-red-400 m-1 focus:shadow-md focus:border-red focus:outline-none focus:ring-0' placeholder='Password' id='passwordInput' onChange={handleInputField}></input>
                               </>
                             }
-                            <p className='forgetPasswordTxt'>Forget Password?</p>
+                            <p className='forgetPasswordTxt'>Not a verifier?</p>
                             
                            <br></br>
                             <span>
@@ -135,6 +272,13 @@ export const SignPage2 = () => {
 
     return(
         <>
+            <div class="absolute top-10 right-20 h-18 w-19 ...">
+                <button className='rounded-2xl m-2 text-white bg-blue-400 w-10px px-10 py-3 shadow-md hover:text-blue-400 hover:bg-white transition duration-200 ease-in'
+                    onClick={onConnectClicked}
+                >
+                        {account || 'Connect Wallet'}
+                      </button>
+            </div>
         <div className="bg-gray-100 flex flex-col items-center justify-center min-h-screen md:py-2" style={{backgroundColor: '#1a1d43'}} id='signPageContainer'>
             <main className="flex items-center w-full px-2 md:px-20">
                 <div className="hidden md:inline-flex flex-col flex-1 space-y-1">
@@ -149,7 +293,7 @@ export const SignPage2 = () => {
                         )
                 }
                 </main>
-            </div>
+                </div>
         </>
     )
 

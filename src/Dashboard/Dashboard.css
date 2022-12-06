@@ -132,10 +132,11 @@
 }
 .dashboardEventName{
     font-size: 18px;
-    padding-top: 20px;
+    padding-top: 11px;
     text-align: left;
     margin-left: 30px;
 }
+
 .editEventBtn{
     float: right;
     margin-right: 30px;

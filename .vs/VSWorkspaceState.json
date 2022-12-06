@@ -2,8 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\build",
-    "\\src"
+    "\\src",
+    "\\src\\Dashboard",
+    "\\src\\Include",
+    "\\src\\SignUp"
   ],
-  "SelectedNode": "\\src\\Sign Page.js",
+  "SelectedNode": "\\src\\Dashboard\\Configuration.js",
   "PreviewInSolutionExplorer": false
 }
