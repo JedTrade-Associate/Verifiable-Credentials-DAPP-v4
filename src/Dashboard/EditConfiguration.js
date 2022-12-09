@@ -1,5 +1,5 @@
-import { withRouter } from "react-router-dom";
-import React, { Component, useState, useRef } from 'react'
+import { withRouter, useLocation} from "react-router-dom";
+import React, { Component, useState, useRef, useEffect} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser,  faChevronDown} from '@fortawesome/free-solid-svg-icons';
 import Countries from '../Include/DropdownValues/Countries';
@@ -10,6 +10,8 @@ import { Slider } from "@material-ui/core";
 import { createTheme } from "@mui/material/styles";
 
 export const EditConfiguration = () => {
+  const location = useLocation();
+
   const [nameInput, setNameInput] = useState('');
   const [orgInput, setOrgInput] = useState('');
   const [emailInput, setEmailInput] = useState('');
@@ -17,8 +19,8 @@ export const EditConfiguration = () => {
   const [countryInput, setCountryInput] = useState('');
   const [cityInput, setCityInput] = useState('');
   const [purposeInput, setPurposeInput] = useState('');
-  const [startDateInput, setStartDateInput] = useState(new Date());
-  const [endDateInput, setEndDateInput] = useState(new Date());
+  const [startDateInput, setStartDateInput] = useState(new Date(location.state.startDate));
+  const [endDateInput, setEndDateInput] = useState(new Date(location.state.endDate));
   const [rpcInput, setRpcInput] = useState('');
   const [tokenIDInput, setTokenIDInput] = useState('');
   const [numberOfTokensInput, setNumberOfTokensInput] = useState('');
@@ -35,6 +37,21 @@ export const EditConfiguration = () => {
     endDate: new Date(endDateInput),
     key: 'Selection'
   }
+
+
+  useEffect(() => {
+    var purposeSelect = document.getElementById('purposeOfVerification')
+    var purposeValue = purposeSelect.value;
+    if (purposeValue === 'Token-Gate Events'){
+      setAdvancedConfig(true)
+    }
+    if(location.state.numberofTokens >= 5){
+      setDisableSliderInput1(false)
+    }
+    if(location.state.numberofDays >= 5){
+      setDisableSliderInput2(false)
+    }
+})
 
   //hardcoded for now
   const marks = [{
@@ -184,28 +201,28 @@ export const EditConfiguration = () => {
                     <form className="configurationForm">
 
                         <p className="inputHeaders">NAME: * </p>
-                        <input type='text'className="nameInput" onChange={handleInputChanges} id='name'></input>
+                        <input type='text'className="nameInput" onChange={handleInputChanges} id='name' defaultValue={location.state.name}></input>
                         
                         <p className="inputHeaders">ORGANISATION: *</p>
-                        <input type='text' className="nameInput" id='organisation' onChange={handleInputChanges}></input>
+                        <input type='text' className="nameInput" id='organisation' onChange={handleInputChanges} defaultValue={location.state.org}></input>
                         
                         <p className="inputHeaders">EMAIL: *</p>
-                        <input type='email' className="nameInput" id='email' onChange={handleInputChanges}></input>
+                        <input type='email' className="nameInput" id='email' onChange={handleInputChanges} defaultValue={location.state.email}></input>
                         
                         <p className="inputHeaders">COMPANY WEBSITE: </p>
-                        <input type='url' className="nameInput" id='companyWebsite' onChange={handleInputChanges}></input>
+                        <input type='url' className="nameInput" id='companyWebsite' onChange={handleInputChanges} defaultValue={location.state.companyWeb}></input>
 
                         <p className="inputHeaders" style={{marginLeft: '370px', marginTop: '-253px'}}>COUNTRY: </p>
-                        <select className="nameInput" id='country' style={{marginLeft: '370px'}} onChange={handleInputChanges}>
+                        <select className="nameInput" id='country' style={{marginLeft: '370px'}} onChange={handleInputChanges} defaultValue={location.state.country}>
                             <Countries></Countries>
                         </select>
 
                         <p className="inputHeaders" style={{marginLeft: '370px', marginTop: '0px'}}>CITY: </p>
-                        <input type='text' className="nameInput" style={{marginLeft: '370px'}} id='city' onChange={handleInputChanges}></input>
+                        <input type='text' className="nameInput" style={{marginLeft: '370px'}} id='city' onChange={handleInputChanges} defaultValue={location.state.city}></input>
 
                         <p className="inputHeaders" style={{marginLeft: '370px', marginTop: '0px'}}>PURPOSE OF VERIFICATION: </p>
-                        <select className="nameInput" id="purposeOfVerification" style={{marginLeft: '370px'}} onChange={handleInputChanges} >
-                            <option value="IRL authentication">IRL authentication</option>
+                        <select className="nameInput" id="purposeOfVerification" style={{marginLeft: '370px'}} onChange={handleInputChanges} defaultValue={location.state.purpose} >
+                            <option value="IRL authentication">In Real Life authentication</option>
                             <option value="Token-Gate Events">Token-Gate Events</option>
                             <option value="Others">Others</option>
                         </select>
@@ -233,13 +250,13 @@ export const EditConfiguration = () => {
                     {openAdvancedConfig === true &&
                         <form className="thirdConfigurationForm">
                         <p className="advancedConfigurationHeader">Advanced Configurations</p><FontAwesomeIcon icon={faChevronDown} style={{display: 'inline-block', marginLeft: '8px'}}></FontAwesomeIcon><br></br><br></br><p className="inputHeaders3">RPC ENDPOINTS: </p>
-                            <select className="advancedInput" id="RPC" onChange={handleInputChanges}>
+                            <select className="advancedInput" id="RPC" onChange={handleInputChanges} defaultValue={location.state.rpc}>
                                 <option value="EthereuemMainNet">Ethereum MainNet - Chain ID: 1</option>
                                 <option value="BinanceMainNet">Binance MainNet - Chain ID: 97 </option>
                             </select><br></br>
 
-                            <p className="inputHeaders3">TOKEN CONTRACT ID</p>
-                            <input type='text 'className="advancedInput" id="tokenID" onChange={handleInputChanges}></input>
+                            <p className="inputHeaders3">TOKEN CONTRACT ADDRESS</p>
+                            <input type='text 'className="advancedInput" id="tokenID" onChange={handleInputChanges} defaultValue={location.state.tokenID}></input>
                             <br></br>
                             <p className="inputHeaders3">Number of Tokens (NFTS) held by user</p>
                             <div className="sliderTokens">
@@ -251,11 +268,19 @@ export const EditConfiguration = () => {
                             marks={marks}
                             max = {5}
                             min = {0}
+                            defaultValue={location.state.numberofTokens}
                             />
                             </div>
+                            {disableSliderInput1 === false ? (
+                                <input type='text' className='sliderInput' id='numberofTokensInput' onChange={handleInputChanges} disabled={disableSliderInput1} defaultValue={location.state.numberofTokens}></input>
+                                )
+                                :
+                                (
+                                  <input type='text' className='sliderInput' id='numberofTokensInput' onChange={handleInputChanges} disabled={disableSliderInput1}></input>
+                                )
+                             }
 
-                            <input type='text' className='sliderInput' id='numberofTokensInput' onChange={handleInputChanges} disabled={disableSliderInput1}></input>
-
+                           
                             <p className="inputHeaders3">Held NFTs for number of days.</p>
                             <div className="sliderTokens">
                             <Slider
@@ -266,11 +291,18 @@ export const EditConfiguration = () => {
                             marks={marks}
                             max = {5}
                             min = {0}
+                            defaultValue={location.state.numberofDays}
 
                             />
                             </div>
-                            <input type='text' className='sliderInput' id='numberofTokensInput2' onChange={handleInputChanges} disabled={disableSliderInput2}></input>
-                          
+                            {disableSliderInput2 === false ? (
+                               <input type='text' className='sliderInput' id='numberofTokensInput2' onChange={handleInputChanges} disabled={disableSliderInput2} defaultValue={location.state.numberofDays}></input>
+                                )
+                                :
+                                (
+                                <input type='text' className='sliderInput' id='numberofTokensInput2' onChange={handleInputChanges} disabled={disableSliderInput2}></input>                                )
+                             }
+
                         </form>
                         }
                         <button type="submit" className="submitBtnConfiguration" onClick={submitNewEvent}>Submit Event Conditions</button>

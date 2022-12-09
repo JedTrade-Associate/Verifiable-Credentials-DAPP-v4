@@ -26,17 +26,11 @@ export const Dashboard2 = () => {
         fetchEvents();
     })
 
-    const editEvent = () => {
-        history.push('/EditConfiguration')
-    // this.props.history.push({
-            //     pathname: '/editConfiguration',
-            //       state: this.state.allEvents // your data array of objects
-            //   })
-        //     this.props.history.push({
-        //         pathname: '/editConfiguration',
-        //           state: this.state.allEvents[0] // your data array of objects
-        //       })
-        //    this.props.history.go()
+    const editEvent = (index) => {
+        history.push({
+            pathname: '/EditConfiguration',
+            state: allEvents[index] //data array of objects
+        })
 
     }
         return(
@@ -70,7 +64,7 @@ export const Dashboard2 = () => {
                     <p className="EventsHeader">Events</p>
                     {allEvents.map(function(object, i){
                         return <div className="eachEventCard">
-                            <button className="editEventBtn" onClick={editEvent}><FontAwesomeIcon icon={faPencilAlt}></FontAwesomeIcon></button>
+                            <button className="editEventBtn" onClick={() => editEvent(i)}><FontAwesomeIcon icon={faPencilAlt}></FontAwesomeIcon></button>
                            <p className="dashboardEventName">Event: {object.name}</p>
                            <p className="dashboardEventName">Verification Code: {object.identifier}</p>
                            <p className="dashboardEventName">Event Date: {object.startDate} - {object.endDate}</p>

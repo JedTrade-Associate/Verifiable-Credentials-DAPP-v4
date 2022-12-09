@@ -239,7 +239,7 @@ export const Configuration2 = () => {
 
                         <p className="inputHeaders" style={{marginLeft: '370px', marginTop: '0px'}}>PURPOSE OF VERIFICATION: </p>
                         <select className="nameInput" id="purposeOfVerification" style={{marginLeft: '370px'}} onChange={handleInputChanges} >
-                            <option value="IRL authentication">IRL authentication</option>
+                            <option value="IRL authentication">In Real Life authentication</option>
                             <option value="Token-Gate Events">Token-Gate Events</option>
                             <option value="Others">Others</option>
                         </select>
@@ -272,7 +272,7 @@ export const Configuration2 = () => {
                                 <option value="BinanceMainNet">Binance MainNet - Chain ID: 97 </option>
                             </select><br></br>
 
-                            <p className="inputHeaders3">TOKEN CONTRACT ID</p>
+                            <p className="inputHeaders3">TOKEN CONTRACT ADDRESS</p>
                             <input type='text 'className="advancedInput" id="tokenID" onChange={handleInputChanges}></input>
                             <br></br>
                       <p className="inputHeaders3">Number of Tokens (NFTS) held by user (&#8805;)</p>

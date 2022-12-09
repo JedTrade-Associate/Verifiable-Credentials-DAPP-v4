@@ -73,7 +73,9 @@ import { Configuration2} from '../Dashboard/Configuration'
           exact={true}
           path='/Settings'
           render={(e, props) => (
+            <Sidebar>
             <Settings {...e} data={props} />    
+            </Sidebar>
           )}
         />
 
