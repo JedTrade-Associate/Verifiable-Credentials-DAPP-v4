@@ -3,10 +3,11 @@
     "",
     "\\build",
     "\\src",
+    "\\src\\Assets",
     "\\src\\Dashboard",
     "\\src\\Include",
     "\\src\\SignUp"
   ],
-  "SelectedNode": "\\src\\Dashboard\\Configuration.js",
+  "SelectedNode": "\\src\\SignUp\\SignPage.js",
   "PreviewInSolutionExplorer": false
 }

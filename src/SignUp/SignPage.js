@@ -94,21 +94,21 @@ Account: ${account}
         }
         else {
             console.log("Wallet Verified -- Processing Document")
-            APIProcess(dateTime);
+            APIProcess();
         }
     }
 
-    const APIProcess = async (dateTime) => {
+    const APIProcess = async () => {
         axios({
             method: "POST",
             url: "http://localhost:3002/api/v1/users",
             data: {
                 wallet: `${account}`,
                 deviceID: "",
+                vc: "",
             }
         }).then(res => {
-            var encodedStringBtoA = window.btoa(account + dateTime);
-            setUrl(encodedStringBtoA);
+            createVC();
         }).catch(function(error) {
             if ( error.response.status == 500) {
                 console.log(error.response.data);
@@ -116,6 +116,41 @@ Account: ${account}
                 setDuplicate("500")
             }
         });
+    }
+
+    const createVC = async () => {
+        axios({
+            method: "POST",
+            url: "http://localhost:3002/api/v1/issuance/create",
+            data: {
+                wallet: `${account}`,
+            }
+        }).then(res => {
+            var JSONstring = JSON.stringify(res.data);
+            var VC = window.btoa(JSONstring);
+            console.log(VC)
+            storeVCAPI(VC);
+        })
+    }
+
+    const storeVCAPI = async (vc) => {
+        axios({
+            method: "POST",
+            url: "http://localhost:3002/api/v1/users/VC",
+            data: {
+                wallet: `${account}`,
+                deviceID: "",
+                vc: `${vc}`,
+            }
+        })
+
+        var today = new Date();
+        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        var dateTime = date + ' ' + time;
+
+        var encodedStringBtoA = window.btoa(account + dateTime);
+        setUrl(encodedStringBtoA);
     }
 
 
