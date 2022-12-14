@@ -2,7 +2,7 @@
 .DashboardDiv{
     background-color: #0e102f;
     height: 1200px;
-    width: 1369px;
+    width: 2000px;
     margin-left: -100px;
     margin-top: -250px;
     position: absolute;
@@ -15,7 +15,7 @@
    /* margin-left: 455px; */
    /* margin: top right bottom left */
     /* margin: 30px 50px 20px -550px; */
-    margin-left: 20px;
+    margin-left: -560px;
     background-color: #1a1d43;
     color: white;
     border: 1px solid rgba(0,0,0,0.2);
@@ -59,13 +59,13 @@
 .mainHeader{
     font-size: 30px;
     color: white;
-    margin: 280px 0px 0px -970px;
+    margin: 280px 0px 0px -1600px;
     font-weight: 600;
 }
 .mainHeader2{
     font-size: 30px;
     color: white;
-    margin: 280px 0px 0px -870px;
+    margin: 280px 0px 0px -1500px;
     font-weight: 600;
 }
 
@@ -73,7 +73,7 @@
 .configurationDiv{
     background-color: #0e102f;
     height: 1500px;
-    width: 1369px;
+    width: 2000px;
     margin-left: -100px;
     margin-top: -250px;
     position: absolute;
@@ -83,7 +83,7 @@
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1);
     transition: 0.3s;
     width:850px;
-    margin-left: -000px;
+    margin-left: -600px;
     margin-top: 50px;
     background-color: #64748b;
     color: white;
