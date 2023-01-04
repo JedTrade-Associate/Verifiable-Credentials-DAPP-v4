@@ -24,7 +24,7 @@ export const EditConfiguration = () => {
   const [rpcInput, setRpcInput] = useState('');
   const [tokenIDInput, setTokenIDInput] = useState('');
   const [numberOfTokensInput, setNumberOfTokensInput] = useState('');
-  const [numberOfDaysInput, setNumberOfDaysInput] = useState('');
+  //const [numberOfDaysInput, setNumberOfDaysInput] = useState('');
 
   // const [inputList, setInputList] = useState([{name: '', org: '', email: '', companyweb: '', country: '', city: '', purpose: '',
   // startDate: new Date(), endDate: new Date(), rpc: '', tokenId: '', numberofTokens: '', numberofdays: ''}]);
@@ -39,7 +39,8 @@ export const EditConfiguration = () => {
   }
 
 
-  useEffect(() => {
+    useEffect(() => {
+        console.log('location', location.state);
     var purposeSelect = document.getElementById('purposeOfVerification')
     var purposeValue = purposeSelect.value;
     if (purposeValue === 'Token-Gate Events'){
@@ -251,8 +252,9 @@ export const EditConfiguration = () => {
                         <form className="thirdConfigurationForm">
                         <p className="advancedConfigurationHeader">Advanced Configurations</p><FontAwesomeIcon icon={faChevronDown} style={{display: 'inline-block', marginLeft: '8px'}}></FontAwesomeIcon><br></br><br></br><p className="inputHeaders3">RPC ENDPOINTS: </p>
                             <select className="advancedInput" id="RPC" onChange={handleInputChanges} defaultValue={location.state.rpc}>
-                                <option value="EthereuemMainNet">Ethereum MainNet - Chain ID: 1</option>
-                                <option value="BinanceMainNet">Binance MainNet - Chain ID: 97 </option>
+                            <option value="EthereuemMainNet">Ethereum MainNet - Chain ID: 1</option>
+                            <option value="GoerliTestNet">Goerli TestNet - Chain ID: 5</option>
+                            <option value="BinanceMainNet">Binance MainNet - Chain ID: 97 </option>
                             </select><br></br>
 
                             <p className="inputHeaders3">TOKEN CONTRACT ADDRESS</p>
@@ -280,7 +282,7 @@ export const EditConfiguration = () => {
                                 )
                              }
 
-                           
+                      {/*
                             <p className="inputHeaders3">Held NFTs for number of days.</p>
                             <div className="sliderTokens">
                             <Slider
@@ -302,7 +304,7 @@ export const EditConfiguration = () => {
                                 (
                                 <input type='text' className='sliderInput' id='numberofTokensInput2' onChange={handleInputChanges} disabled={disableSliderInput2}></input>                                )
                              }
-
+                      */}
                         </form>
                         }
                         <button type="submit" className="submitBtnConfiguration" onClick={submitNewEvent}>Submit Event Conditions</button>

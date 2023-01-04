@@ -31,7 +31,9 @@ export const SignPage2 = () => {
     // Web 3 login
     const { activate, deactivate, library, account, chainId, message } = useWeb3React()
     const [connected, setConnect] = useState("connect");
+    //const { infuraKey } = "c4761ef89a064e6fb5e971029f651135";
 
+    // MetaMask
     const injected = new InjectedConnector({
         supportedChainIds: [1, 3, 4, 5, 42],
     })
@@ -57,12 +59,31 @@ export const SignPage2 = () => {
         } catch (ex) {
             console.log(ex)
         }
+        onCheckwalletApi();
+    }
+
+    // Check if wallet has already been registered
+    const [exist, setexist] = useState("");
+    const onCheckwalletApi = async () => {
+        axios({
+            method: "GET",
+            url: `http://localhost:3002/api/v1/users/${account}`,
+        }).then(
+            res => {
+                if (res.status == 200) {
+                    setexist("exist")
+                }
+                else {
+                    setexist("not")
+                }
+            }
+        )
     }
 
     // Sign with MetaMask
     const onMetamaskSignClicked = async () => {
         setUrl("")
-
+        setexist("")
         var today = new Date();
         var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
         var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
@@ -94,6 +115,7 @@ Account: ${account}
         }
         else {
             console.log("Wallet Verified -- Processing Document")
+            setDuplicate("connecting")
             APIProcess();
         }
     }
@@ -229,15 +251,22 @@ Account: ${account}
                             {(url != "") ? (
                                 <div class="box-content p-4 border-4 flex flex-col items-center justify-center" id='qrCodeBox'><div ref={qrRef}>{qrcode}</div></div>
 
-                            ) : (duplicate == "500") ?
+                            ) : (duplicate == "connecting") ?
                                     (
                                         <div class="box-content p-4 flex flex-col items-center justify-center" id='qrCodeBox'>
-                                        <div className="flex flex-col items-center pt-5 space-y-4">
-                                                <img width={150} height={150} src={require('../Assets/76699-error.gif')} alt="VC has been Duplicated" />
-                                                <h4 className='text-lg text-gray-400 pt-2'>Wallet has already been registered to a device</h4><br></br>
+                                            <div className="flex flex-col items-center pt-5 space-y-4">
+                                                <Waves backgroundColor="#fff" text="Generating verifiable credentials..." waveColor="#afeeee" className="w-50 text-sky-600 font-bold" />
+                                            </div>
                                         </div>
-                                        </div>
-                                    )
+                                    ) : (duplicate == "500") ?
+                                        (
+                                            <div class="box-content p-4 flex flex-col items-center justify-center" id='qrCodeBox'>
+                                                <div className="flex flex-col items-center pt-5 space-y-4">
+                                                    <img width={150} height={150} src={require('../Assets/76699-error.gif')} alt="VC has been Duplicated" />
+                                                    <h4 className='text-lg text-gray-400 pt-2'>Wallet has already been registered to a device</h4><br></br>
+                                                </div>
+                                            </div>
+                                        )
                                     : (
                                             <div class="box-content p-4 flex flex-col items-center justify-center" id='qrCodeBox'>
                                                 <div className="flex flex-col items-center pt-5 space-y-4">
@@ -304,9 +333,9 @@ Account: ${account}
                     </div>
         )
     }
-
-    return(
-        <>
+    const SignPage = () => {
+        return (
+            <>
             <div class="absolute top-10 right-20 h-18 w-19 ...">
                 <button className='rounded-2xl m-2 text-white bg-blue-400 w-10px px-10 py-3 shadow-md hover:text-blue-400 hover:bg-white transition duration-200 ease-in'
                     onClick={onConnectClicked}
@@ -314,21 +343,69 @@ Account: ${account}
                         {account || 'Connect Wallet'}
                       </button>
             </div>
-        <div className="bg-gray-100 flex flex-col items-center justify-center min-h-screen md:py-2" style={{backgroundColor: '#1a1d43'}} id='signPageContainer'>
-            <main className="flex items-center w-full px-2 md:px-20">
-                <div className="hidden md:inline-flex flex-col flex-1 space-y-1">
-                    <p className='AppName'>VC DAPP</p>
-                    <p className= '' id="subText">{Ptext}</p>
-                </div>
-                {
-                    isLogin ? (
-                        <VCGen/>
-                    ) : (
-                        <VerifierCond/>
-                        )
-                }
+            <div className="bg-gray-100 flex flex-col items-center justify-center min-h-screen md:py-2" style={{ backgroundColor: '#1a1d43' }} id='signPageContainer'>
+                <main className="flex items-center w-full px-2 md:px-20">
+                    <div className="hidden md:inline-flex flex-col flex-1 space-y-1">
+                        <p className='AppName'>WalletProof</p>
+                        <p className= '' id="subText">{Ptext}</p>
+                    </div>
+                    {
+                        isLogin ? (
+                            <VCGen/>
+                        ) : (
+                            <VerifierCond/>
+                            )
+                    }
                 </main>
+            </div>
+            )
+            </>
+        )
+    }
+
+    const Registered = () => {
+        return (
+            <>
+                <div class="absolute top-10 right-20 h-18 w-19 ...">
+                    <button className='rounded-2xl m-2 text-white bg-blue-400 w-10px px-10 py-3 shadow-md hover:text-blue-400 hover:bg-white transition duration-200 ease-in'
+                    >
+                        {account || 'Disconnect Wallet'}
+                    </button>
                 </div>
+                <div className="bg-gray-100 flex flex-col items-center justify-center min-h-screen md:py-2" style={{ backgroundColor: '#1a1d43' }} id='signPageContainer'>
+                    <main className="flex items-center w-full px-2 md:px-20">
+                        <div className="hidden md:inline-flex flex-col flex-1 space-y-1">
+                            <p className='RegistedPage'>Welcome to WalletProof</p>
+                        </div>
+                        <div className="hidden md:inline-flex flex-col flex-1 space-y-1">
+                        <a href="#" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-md ">
+                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-blue-400">Expiration Date</h5>
+                            <p class="font-normal text-gray-700 dark:text-gray-400">Date here</p>
+                        </a>
+                        <a href="#" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-white dark:bg-white dark:border-gray-700 dark:hover:bg-gray-700">
+                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-blue-400">Re-issue wallet</h5>
+                                <p class="font-normal text-gray-700 dark:text-gray-400">Lost or changed device</p>
+                        </a>
+                        <a href="#" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-white dark:bg-white dark:border-gray-700 dark:hover:bg-gray-700">
+                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-blue-400">Revoke Verifiable Credentials</h5>
+                                <p class="font-normal text-gray-700 dark:text-gray-400">Lost access to the account, or not using your walletproof anymore?</p>
+                            </a>
+                        </div>
+                    </main>
+                </div>
+            </>
+        )
+    }
+
+    return(
+        <>
+            {
+                exist == "exist" ? (
+                    <Registered />
+                ) : (
+                        <SignPage />
+                    )
+            }
         </>
     )
 

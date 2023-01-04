@@ -32,6 +32,14 @@
     font-weight: bolder;
     text-align: left;
 }
+.RegistedPage {
+    color: #FFFFFF;
+    font-size: 50px;
+    margin-top: -200px;
+    font-weight: bolder;
+    text-align: center;
+}
+
 #subText{
     color: white;
     font-size: 30px;

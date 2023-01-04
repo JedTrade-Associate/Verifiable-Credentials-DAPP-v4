@@ -24,7 +24,7 @@ export const Configuration2 = () => {
   const [rpcInput, setRpcInput] = useState('');
   const [tokenIDInput, setTokenIDInput] = useState('');
   const [numberOfTokensInput, setNumberOfTokensInput] = useState('');
-  const [numberOfDaysInput, setNumberOfDaysInput] = useState('');
+  //const [numberOfDaysInput, setNumberOfDaysInput] = useState('');
   const history = useHistory();
 
   // const [inputList, setInputList] = useState([{name: '', org: '', email: '', companyweb: '', country: '', city: '', purpose: '',
@@ -195,7 +195,7 @@ export const Configuration2 = () => {
             rpc: `${rpcInput}`,
             tokenID: `${tokenIDInput}`,
             numberofTokens: `${numberOfTokensInput}`,
-            numberofDays: `${numberOfDaysInput}`,
+            //numberofDays: `${numberOfDaysInput}`,
             identifier: `${identifierCode}`,
             attendees: 0,
         }
@@ -269,13 +269,14 @@ export const Configuration2 = () => {
                         <p className="advancedConfigurationHeader">Advanced Configurations</p><FontAwesomeIcon icon={faChevronDown} style={{display: 'inline-block', marginLeft: '8px'}}></FontAwesomeIcon><br></br><br></br><p className="inputHeaders3">RPC ENDPOINTS: </p>
                             <select className="advancedInput" id="RPC" onChange={handleInputChanges}>
                                 <option value="EthereuemMainNet">Ethereum MainNet - Chain ID: 1</option>
+                                <option value="GoerliTestNet">Goerli TestNet - Chain ID: 5</option>
                                 <option value="BinanceMainNet">Binance MainNet - Chain ID: 97 </option>
                             </select><br></br>
 
                             <p className="inputHeaders3">TOKEN CONTRACT ADDRESS</p>
                             <input type='text 'className="advancedInput" id="tokenID" onChange={handleInputChanges}></input>
                             <br></br>
-                      <p className="inputHeaders3">Number of Tokens (NFTS) held by user (&#8805;)</p>
+                            <p className="inputHeaders3">Number of Tokens (NFTS) held by user (&#8805;)</p>
                             <div className="sliderTokens">
                             <Slider
                             aria-label="Restricted values"
@@ -289,7 +290,7 @@ export const Configuration2 = () => {
                             </div>
 
                             <input type='text' className='sliderInput' id='numberofTokensInput' onChange={handleInputChanges} disabled={disableSliderInput1}></input>
-
+                            {/*
                             <p className="inputHeaders3">Held NFTs for number of days. (&#8805;)</p>
                             <div className="sliderTokens">
                             <Slider
@@ -304,7 +305,7 @@ export const Configuration2 = () => {
                             />
                             </div>
                             <input type='text' className='sliderInput' id='numberofTokensInput2' onChange={handleInputChanges} disabled={disableSliderInput2}></input>
-                          
+                          */}
                         </form>
                         }
                         <button type="submit" className="submitBtnConfiguration" onClick={saveConditions}>Submit Event Conditions</button>

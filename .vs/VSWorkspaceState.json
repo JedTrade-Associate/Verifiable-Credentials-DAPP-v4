@@ -6,8 +6,9 @@
     "\\src\\Assets",
     "\\src\\Dashboard",
     "\\src\\Include",
+    "\\src\\Include\\DropdownValues",
     "\\src\\SignUp"
   ],
-  "SelectedNode": "\\src\\SignUp\\SignPage.js",
+  "SelectedNode": "\\README.md",
   "PreviewInSolutionExplorer": false
 }
